@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title></title>
+    <script src="modernizr.js"></script>
+    <style>
+
+        body {
+            text-align: center;
+        }
+
+        img {
+            max-width: 90%;
+        }
+
+        .js img[srcset] {
+            visibility: hidden;
+        }
+
+    </style>
+</head>
+<body>
+
+    <img src="http://www.eight.nl/static/img/logo.png" alt="Eight Media">
+    <br>
+
+    <img src="imgs/small.png"
+      srcset="imgs/large@2x.png 1000w 1.5x,
+              imgs/large.png 1000w,
+              imgs/medium.png 500w"
+          alt="Example">
+
+    <script src="srcset.js"></script>
+</body>
+</html>
