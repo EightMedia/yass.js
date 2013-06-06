@@ -7,7 +7,7 @@ Yet Another SrcSet implementation.
 
 Add yass.js just after the last img tag on your page. 
 For better user experience you can add some css to hide the images with a srcset onload.
-For now, check example.html for a demo implementation.
+Check example.html for a demo implementation.
 
 Yass.js is small, only 490 bytes minified and gzipped...
 
