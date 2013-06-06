@@ -40,7 +40,7 @@ var SrcSet = (function(win, doc) {
 
         for (var i=0,len=sets.length; i<len; i++) {
             var src = sets[i].match(/[^\s]+/)[0],
-                width = sets[i].match(/(\d+)w/)[1],
+                width = (sets[i].match(/(\d+)w/) || [0,1])[1],
                 pxratio = (sets[i].match(/([.0-9]+)x/) || [0,1])[1];
 
             if (device_width >= width && pxratio <= device_pxratio) {
