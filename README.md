@@ -1,4 +1,4 @@
-srcset.js
+SrcSet.js
 =========
 
 Another srcset attribute implementation.
