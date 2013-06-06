@@ -66,8 +66,14 @@ var SrcSet = (function(win, doc) {
         device_width = (win.innerWidth > 0) ? win.innerWidth : win.screen.width;
 
         for(var i= 0,len=images.length; i<len; i++) {
-            images[i].src = getImgSrc(images[i]);
-            images[i].style.visibility = 'visible';
+            var img = images[i];
+
+            var new_src = getImgSrc(img);
+            if(img.src == new_src) {
+                img.style.visibility = 'visible';
+            }
+
+            img.src = new_src;
         }
     }
 
@@ -78,7 +84,11 @@ var SrcSet = (function(win, doc) {
 
     // store the initial src
     for(var i= 0,len=images.length; i<len; i++) {
-        images[i].setAttribute('srcset-default', images[i].src);
+        var img = images[i];
+        img.setAttribute('srcset-default', img.src);
+        addEvent(img, "load", function() {
+            this.style.visibility = 'visible';
+        });
     }
 
     updateImages();
