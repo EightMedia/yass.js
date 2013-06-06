@@ -10,7 +10,7 @@ For better user experience you can add some css to hide the images with a srcset
 
 For now, check example.html for a demo implementation.
 
-Yass.js is small, only 501 bytes minified and gzipped...
+Yass.js is small, only 490 bytes minified and gzipped...
 
 ## Notes
 
