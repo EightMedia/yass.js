@@ -1,8 +1,8 @@
 /**
- * img srcset
- * based on http://alwaystwisted.com/post.php?s=2012-05-16-screwing-the-srcset
+ * Yet Another SrcSet implementation.
+ * https://github.com/EightMedia/yass.js
  */
-window.YASS = (function(win, doc) {
+var YASS = (function(win, doc) {
 
     /**
      * add event listeners
@@ -79,7 +79,7 @@ window.YASS = (function(win, doc) {
 
 
     var device_width,
-        device_pxratio = win.devicePixelRatio || win.webkitDevicePixelRatio || 1,
+        device_pxratio = win.devicePixelRatio || 1,
         images = doc.images;
 
     // store the initial src
