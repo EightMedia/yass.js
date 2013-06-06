@@ -2,7 +2,7 @@
  * img srcset
  * based on http://alwaystwisted.com/post.php?s=2012-05-16-screwing-the-srcset
  */
-var SrcSet = (function(win, doc) {
+window.YASS = (function(win, doc) {
 
     /**
      * add event listeners

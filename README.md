@@ -1,7 +1,7 @@
-SrcSet.js
+yass.js
 =========
 
-Another srcset attribute implementation.
+Yet Another SrcSet implementation.
 
 
 ## How to use it
