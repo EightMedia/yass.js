@@ -31,7 +31,7 @@ var YASS = (function(win, doc) {
         this.id = generateId();
 
         this.srcset = null;
-        this.has_srcset = image.hasAttribute(srcset_attr);
+        this.has_srcset = image.getAttribute(srcset_attr);
 
         image.setAttribute(yass_attr, this.id);
 
@@ -192,7 +192,7 @@ var YASS = (function(win, doc) {
         // create instances
         var imgs = doc.images;
         for(var i= 0,len=imgs.length; i<len; i++) {
-            if(!imgs[i].hasAttribute(yass_attr)) {
+            if(!imgs[i].getAttribute(yass_attr)) {
                 srcset_instances.push(new ImageSrcSet(imgs[i]));
             }
         }
@@ -204,8 +204,8 @@ var YASS = (function(win, doc) {
      */
     function getMediaProperties() {
         media = {
-            width : win.innerWidth ? win.innerWidth : win.screen.width,
-            height : win.innerHeight ? win.innerHeight : win.screen.height,
+            width : win.innerWidth || doc.documentElement.clientWidth || win.screen.width,
+            height : win.innerHeight || doc.documentElement.clientHeight || win.screen.height,
             pxratio : win.devicePixelRatio || 1
         };
     }
