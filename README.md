@@ -31,4 +31,4 @@ Check the /demo directory for a sample implementation.
 
 Yass.js is small, under 1kb when minified and gzipped...
 
-Tested in Chrome 28, Android 4.2, IOS6 and IE6. Should work on most/all browsers.
+Tested in Chrome 28, Android 4.2, IOS6, BlackBerry10 and IE6. Should work on most/all browsers.
