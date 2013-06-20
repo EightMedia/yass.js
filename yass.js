@@ -81,12 +81,14 @@ var YASS = (function(win, doc) {
             }
 
             // also append the initial image to the set
-            this.srcset.push({
-                src: this.image.src,
-                w: 0,
-                h: 0,
-                x: 1
-            });
+            if(this.image.src) {
+                this.srcset.push({
+                    src: this.image.src,
+                    w: 0,
+                    h: 0,
+                    x: 1
+                });
+            }
 
 
             // sort srcsets from high to low
