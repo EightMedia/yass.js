@@ -1,0 +1,10 @@
+{
+  "name": "yass.js",
+  "version": "0.0.1",
+  "main": "yass.min.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ]
+}
