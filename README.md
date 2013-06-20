@@ -29,6 +29,6 @@ Check the /demo directory for a sample implementation.
 
 ### Notes
 
-Yass.js is small, under 1kb when minified and gzipped...
+Yass.js is small, under 500bytes when minified and gzipped...
 
 Tested in Chrome 28, Android 4.2, IOS6, BlackBerry10 and IE6. Should work on most/all browsers.
