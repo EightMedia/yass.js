@@ -13,12 +13,6 @@ var YASS = (function(win, doc) {
     var media = {};
 
 
-    // dont do anything if srcset is implemented in the browser!
-    if(srcset_attr in new Image()) {
-        return function() {};
-    }
-
-
     /**
      * ImageSrcSet object per image in the document
      * @param image
@@ -115,7 +109,7 @@ var YASS = (function(win, doc) {
             for(i=0; i<this.srcset.length; i++) {
                 s = this.srcset[i];
 
-                if(s.x <= media.pxratio &&
+                if(s.x <= media.density &&
                     (s.w === 0 || s.w < media.width) &&
                     (s.h === 0 || s.h < media.height)) {
                     return s.src;
@@ -206,7 +200,7 @@ var YASS = (function(win, doc) {
         media = {
             width : win.innerWidth || doc.documentElement.clientWidth || win.screen.width,
             height : win.innerHeight || doc.documentElement.clientHeight || win.screen.height,
-            pxratio : win.devicePixelRatio || 1
+            density : win.devicePixelRatio || 1
         };
     }
 
