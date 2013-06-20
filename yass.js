@@ -218,7 +218,7 @@ var YASS = (function(win, doc) {
     var resize_timer;
     addEvent(win, "resize", function() {
         clearTimeout(resize_timer);
-        resize_timer = setTimeout(update, 25);
+        resize_timer = setTimeout(update, 100);
     });
 
 

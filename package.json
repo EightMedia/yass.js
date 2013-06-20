@@ -1,0 +1,29 @@
+{
+    "name": "yass",
+    "title": "Yass.js",
+    "description": "Yet Another SrcSet implementation",
+    "version": "0.0.1",
+    "licenses": [{
+        "type": "MIT",
+        "url": "https://github.com/eightmedia/yass.js/blob/master/LICENSE"
+    }],
+    "keywords": ["srcset","mobilefirst"],
+    "author": {
+        "name": "Jorik Tangelder",
+        "email": "j.tangelder@gmail.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/eightmedia/yass.js.git"
+    },
+    "bugs": {
+        "url": "https://github.com/eightmedia/yass.js/issues"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "grunt": "0.4.x",
+        "grunt-contrib-watch": "0.2.x",
+        "grunt-contrib-uglify": "0.1.x"
+    },
+    "main": "yass.js"
+}
