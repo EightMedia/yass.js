@@ -11,6 +11,6 @@ Check example.html for a demo implementation.
 
 ### Notes
 
-Yass.js is small, only 753 bytes minified and gzipped...
+Yass.js is small, under 1kb when minified and gzipped...
 
 Inspired by http://alwaystwisted.com/post.php?s=2012-05-16-screwing-the-srcset

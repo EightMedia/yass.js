@@ -10,11 +10,7 @@ var YASS = (function(win, doc) {
     var srcset_instances = [];
 
     // media query input data
-    var media = {
-        width: 0,
-        height: 0,
-        pxratio: 1
-    };
+    var media = {};
 
 
     // dont do anything if srcset is implemented in the browser!
@@ -35,54 +31,53 @@ var YASS = (function(win, doc) {
         this.id = generateId();
 
         this.srcset = null;
+        this.has_srcset = image.hasAttribute(srcset_attr);
 
-        this.image.setAttribute(yass_attr, this.id);
+        image.setAttribute(yass_attr, this.id);
+
+        this.collectSrcSet();
+        this.update();
 
         // initial we hide the image with css.
         // when the image is loaded we will show it, also after a timeout,
         // because sometimes the image is already loaded (like from cache)
-        addEvent(this.image, "load", function() { self.show(); });
+        addEvent(image, "load", function() { self.show(); });
         setTimeout(function(){ self.show(); }, 500);
-
-
-        this.getSrcSet();
     }
+
 
     ImageSrcSet.prototype = {
 
         /**
-         * get the srcset value as an array
-         * @returns [array]
+         * parse the srcset attribute as an array
          */
-        getSrcSet : function() {
+        collectSrcSet : function() {
             // already got the srcset
-            if(this.srcset) {
-                return this.srcset;
+            if(this.srcset || !this.has_srcset) {
+                return;
             }
 
             this.srcset = [];
 
             // read the srcset attribute
-            var attr = this.image.getAttribute(srcset_attr);
-            if(attr) {
-                splitted = attr.split(/\s*,\s*/g).reverse();
+            var attr = this.image.getAttribute(srcset_attr),
+                splitted = attr.split(/\s*,\s*/g);
 
-                // walk the srcsets and collect the properties
-                for (var i=0,len=splitted.length; i<len; i++) {
-                    var props = splitted[i].split(" "),
-                        keyval = {
-                            src: props.shift(),
-                            w: 0,
-                            h: 0,
-                            x: 1
-                        };
+            // walk the srcsets and collect the properties
+            for (var i=0; i<splitted.length; i++) {
+                var props = splitted[i].split(" "),
+                    keyval = {
+                        src: props.shift(),
+                        w: 0,
+                        h: 0,
+                        x: 1
+                    };
 
-                    for(var p=0; p<props.length; p++) {
-                        keyval[props[p].slice(-1)] = parseFloat(props[p]);
-                    }
-
-                    this.srcset.push(keyval);
+                for(var p=0; p<props.length; p++) {
+                    keyval[props[p].slice(-1)] = parseFloat(props[p]);
                 }
+
+                this.srcset.push(keyval);
             }
 
             // also append the initial image to the set
@@ -107,8 +102,6 @@ var YASS = (function(win, doc) {
 
                 return 1;
             });
-
-            return this.srcset;
         },
 
 
@@ -116,8 +109,9 @@ var YASS = (function(win, doc) {
          * get the src matching current viewport
          */
         getSrc : function() {
-            for(var i=0; i<this.srcset.length; i++) {
-                var s = this.srcset[i];
+            var s,i;
+            for(i=0; i<this.srcset.length; i++) {
+                s = this.srcset[i];
 
                 if(s.x <= media.pxratio &&
                     (s.w === 0 || s.w < media.width) &&
@@ -144,7 +138,7 @@ var YASS = (function(win, doc) {
          */
         update : function() {
             // only if the image still exists
-            if(this.image.parentNode) {
+            if(this.image.parentNode && this.has_srcset) {
                 this.image.src = this.getSrc();
                 this.show();
             }
@@ -182,17 +176,10 @@ var YASS = (function(win, doc) {
      * @param   {array}     [imgs]
      */
     function update() {
-        media = {
-            width : win.innerWidth ? win.innerWidth : win.screen.width,
-            height : win.innerHeight ? win.innerHeight : win.screen.height,
-            pxratio : win.devicePixelRatio || 1
-        };
-
+        getMediaProperties();
         for(var i= 0,len=srcset_instances.length; i<len; i++) {
             srcset_instances[i].update();
         }
-
-        return srcset_instances;
     }
 
 
@@ -210,8 +197,21 @@ var YASS = (function(win, doc) {
     }
 
 
+    /**
+     * get media properties to test the srcSet values
+     */
+    function getMediaProperties() {
+        media = {
+            width : win.innerWidth ? win.innerWidth : win.screen.width,
+            height : win.innerHeight ? win.innerHeight : win.screen.height,
+            pxratio : win.devicePixelRatio || 1
+        };
+    }
+
+
+    // initial magic
+    getMediaProperties();
     registerImages();
-    update();
 
 
     // update on resize
@@ -229,6 +229,6 @@ var YASS = (function(win, doc) {
     // return an update and register method
     return function() {
         registerImages();
-        return update();
+        update();
     };
 })(window, document);
