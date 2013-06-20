@@ -16,6 +16,13 @@ The order of the queries is not important, these are sorted by Yass. To force th
   srcset="medium.png 500w, small@2x.png 2x, large.png 1000w, large@2x.png 1000w 2x">
 ````
 
+You can also use it without the loading of the `src`, and provide a `noscript` fallback.
+
+````html
+<img srcset="small.png, medium.png 500w, small@2x.png 2x, large.png 1000w, large@2x.png 1000w 2x">
+<noscript><img src="medium.png"></noscript>
+````
+
 ### CSS trick
 
 For slightly better user experience you can add some css to hide the images with a srcset onload.

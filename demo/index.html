@@ -12,10 +12,14 @@
 
         body {
             text-align: center;
+            font: 1.2em/1.8em Arial;
         }
+
+        .logo { border: none; max-width: 30%; }
 
         img {
             max-width: 90%;
+            border: solid 1px #000;
         }
 
         .js img[srcset] {
@@ -26,15 +30,27 @@
 </head>
 <body>
 
-    <img src="http://www.eight.nl/static/img/logo.png" alt="Eight Media">
-    <br>
+    <img src="http://www.eight.nl/static/img/logo.png" alt="Eight Media" class="logo">
 
-    <img src="https://raw.github.com/EightMedia/yass.js/master/demo/imgs/small.png"
-      srcset="https://raw.github.com/EightMedia/yass.js/master/demo/imgs/medium.png 500w,
-              https://raw.github.com/EightMedia/yass.js/master/demo/imgs/small@2x.png 1.5x,
-              https://raw.github.com/EightMedia/yass.js/master/demo/imgs/large.png 1000w,
-              https://raw.github.com/EightMedia/yass.js/master/demo/imgs/large@2x.png 1000w 1.5x"
-          alt="Example">
+    <hr>
+
+    IMG tag with srcset attribute:<br>
+    <img src="imgs/small.png"
+        srcset="imgs/medium.png 500w,
+            imgs/small@2x.png 1.5x,
+            imgs/large.png 1000w,
+            imgs/large@2x.png 1000w 1.5x"
+        alt="Example">
+
+    <hr>
+
+    IMG tag with srcset attribute, without src, and a noscript fallback:<br>
+    <img srcset="imgs/small.png,
+            imgs/medium.png 500w,
+            imgs/small@2x.png 1.5x,
+            imgs/large.png 1000w,
+            imgs/large@2x.png 1000w 1.5x">
+    <noscript><img src="medium.png"></noscript>
 
     <script src="../yass.js"></script>
 </body>
