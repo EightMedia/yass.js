@@ -5,8 +5,14 @@
 var YASS = (function(win, doc) {
     var yass_attr = 'data-yass',
         srcset_attr = 'srcset',
+
+        // shortcuts
+        docEl = doc.documentElement,
+        screen = win.screen,
+
         // collect all instances
         instances = [],
+
         // media query input data
         media = {};
 
@@ -183,8 +189,8 @@ var YASS = (function(win, doc) {
      */
     function getMediaProperties() {
         media = {
-            width : win.innerWidth || doc.documentElement.clientWidth || win.screen.width,
-            height : win.innerHeight || doc.documentElement.clientHeight || win.screen.height,
+            width : win.innerWidth || docEl.clientWidth || screen.width,
+            height : win.innerHeight || docEl.clientHeight || screen.height,
             density : win.devicePixelRatio || 1
         };
     }
