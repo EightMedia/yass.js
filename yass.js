@@ -3,14 +3,12 @@
  * https://github.com/EightMedia/yass.js
  */
 var YASS = (function(win, doc) {
-    var yass_attr = 'data-yass';
-    var srcset_attr = 'srcset';
-
-    // collect all instances
-    var srcset_instances = [];
-
-    // media query input data
-    var media = {};
+    var yass_attr = 'data-yass',
+        srcset_attr = 'srcset',
+        // collect all instances
+        instances = [],
+        // media query input data
+        media = {};
 
 
     /**
@@ -22,14 +20,13 @@ var YASS = (function(win, doc) {
         var self = this;
 
         this.image = image;
-        this.id = generateId();
 
-        this.srcset = null;
+        this.candidates = null;
         this.has_srcset = image.getAttribute(srcset_attr);
 
-        image.setAttribute(yass_attr, this.id);
+        image.setAttribute(yass_attr, true);
 
-        this.collectSrcSet();
+        this.collectCandidates();
         this.update();
 
         // initial we hide the image with css.
@@ -45,22 +42,22 @@ var YASS = (function(win, doc) {
         /**
          * parse the srcset attribute as an array
          */
-        collectSrcSet : function() {
-            // already got the srcset
-            if(this.srcset || !this.has_srcset) {
+        collectCandidates : function() {
+            // already got the candidates
+            if(this.candidates || !this.has_srcset) {
                 return;
             }
 
-            this.srcset = [];
+            this.candidates = [];
 
             // read the srcset attribute
             var attr = this.image.getAttribute(srcset_attr),
-                splitted = attr.split(/\s*,\s*/g);
+                parts = attr.split(/\s*,\s*/g);
 
             // walk the srcsets and collect the properties
-            for (var i=0; i<splitted.length; i++) {
-                var props = splitted[i].split(" "),
-                    keyval = {
+            for (var i=0; i<parts.length; i++) {
+                var props = parts[i].split(" "),
+                    values = {
                         src: props.shift(),
                         w: 0,
                         h: 0,
@@ -68,15 +65,15 @@ var YASS = (function(win, doc) {
                     };
 
                 for(var p=0; p<props.length; p++) {
-                    keyval[props[p].slice(-1)] = parseFloat(props[p]);
+                    values[props[p].slice(-1)] = parseFloat(props[p]);
                 }
 
-                this.srcset.push(keyval);
+                this.candidates.push(values);
             }
 
             // also append the initial image to the set
             if(this.image.src) {
-                this.srcset.push({
+                this.candidates.push({
                     src: this.image.src,
                     w: 0,
                     h: 0,
@@ -86,7 +83,7 @@ var YASS = (function(win, doc) {
 
 
             // sort srcsets from high to low
-            this.srcset.sort(function(a,b) {
+            this.candidates.sort(function(a,b) {
                 if(a.x > b.x) { return -1; }
                 if(a.x < b.x) { return 1; }
 
@@ -105,19 +102,19 @@ var YASS = (function(win, doc) {
          * get the src matching current viewport
          */
         getSrc : function() {
-            var s,i;
-            for(i=0; i<this.srcset.length; i++) {
-                s = this.srcset[i];
+            var c, i;
+            for(i=0; i<this.candidates.length; i++) {
+                c = this.candidates[i];
 
-                if(s.x <= media.density &&
-                    (s.w === 0 || s.w < media.width) &&
-                    (s.h === 0 || s.h < media.height)) {
-                    return s.src;
+                if(c.x <= media.density &&
+                    (c.w === 0 || c.w < media.width) &&
+                    (c.h === 0 || c.h < media.height)) {
+                    return c.src;
                 }
             }
 
             // return the smallest, probarly the initial
-            return s.src;
+            return c.src;
         },
 
 
@@ -142,17 +139,6 @@ var YASS = (function(win, doc) {
     };
 
 
-
-    /**
-     * image id generator
-     * @type {number}
-     */
-    var last_id = 0;
-    function generateId() {
-        return last_id++;
-    }
-
-
     /**
      * add event listeners
      * @param   {object}    obj
@@ -169,12 +155,11 @@ var YASS = (function(win, doc) {
 
     /**
      * update all images to match their srcset
-     * @param   {array}     [imgs]
      */
     function update() {
         getMediaProperties();
-        for(var i= 0,len=srcset_instances.length; i<len; i++) {
-            srcset_instances[i].update();
+        for(var i= 0,len=instances.length; i<len; i++) {
+            instances[i].update();
         }
     }
 
@@ -187,7 +172,7 @@ var YASS = (function(win, doc) {
         var imgs = doc.images;
         for(var i= 0,len=imgs.length; i<len; i++) {
             if(!imgs[i].getAttribute(yass_attr)) {
-                srcset_instances.push(new ImageSrcSet(imgs[i]));
+                instances.push(new ImageSrcSet(imgs[i]));
             }
         }
     }
