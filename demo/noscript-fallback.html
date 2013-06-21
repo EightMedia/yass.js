@@ -15,35 +15,20 @@
             font: 1.2em/1.8em Arial;
         }
 
-        .logo { border: none; max-width: 30%; }
-
         img {
             max-width: 90%;
             border: solid 1px #000;
         }
 
-        .js img[srcset] {
-            visibility: hidden;
-        }
+        /* hides image error icon. Yass.js sets the image to visible onload. */
+        .js img[srcset] { visibility: hidden; }
+
+        /* hide images with srcset when no JS, the img between the noscript will be shown instead */
+        .no-js img[srcset] { display: none; }
 
     </style>
 </head>
 <body>
-
-    <img src="http://www.eight.nl/static/img/logo.png" alt="Eight Media" class="logo">
-
-    <hr>
-
-    IMG tag with srcset attribute:<br>
-    <img src="http://placehold.it/300x150"
-        srcset="http://placehold.it/800x300 500w,
-            http://placehold.it/600x300 1.5x,
-            http://placehold.it/1200x400 1000w,
-            http://placehold.it/2400x800 1000w 1.5x"
-        alt="Example">
-
-    <hr>
-
     IMG tag with srcset attribute, without src, and a noscript fallback:<br>
     <img srcset="http://placehold.it/300x150,
             http://placehold.it/800x300 500w,

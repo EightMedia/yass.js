@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>YASS.js</title>
+
+    <script src="modernizr.js"></script>
+    <style>
+
+        body {
+            text-align: center;
+            font: 1.2em/1.8em Arial;
+        }
+
+        img {
+            max-width: 90%;
+            border: solid 1px #000;
+        }
+
+        .js img[srcset] { visibility: hidden; }
+
+    </style>
+</head>
+<body>
+
+    IMG tag with srcset attribute, may cause 2 requests:<br>
+    <img src="http://placehold.it/300x150"
+        srcset="http://placehold.it/800x300 500w,
+            http://placehold.it/600x300 1.5x,
+            http://placehold.it/1200x400 1000w,
+            http://placehold.it/2400x800 1000w 1.5x"
+        alt="Example">
+
+    <script src="../yass.js"></script>
+</body>
+</html>
