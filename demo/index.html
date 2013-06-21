@@ -35,22 +35,22 @@
     <hr>
 
     IMG tag with srcset attribute:<br>
-    <img src="imgs/small.png"
-        srcset="imgs/medium.png 500w,
-            imgs/small@2x.png 1.5x,
-            imgs/large.png 1000w,
-            imgs/large@2x.png 1000w 1.5x"
+    <img src="http://placehold.it/300x150"
+        srcset="http://placehold.it/800x300 500w,
+            http://placehold.it/600x300 1.5x,
+            http://placehold.it/1200x400 1000w,
+            http://placehold.it/2400x800 1000w 1.5x"
         alt="Example">
 
     <hr>
 
     IMG tag with srcset attribute, without src, and a noscript fallback:<br>
-    <img srcset="imgs/small.png,
-            imgs/medium.png 500w,
-            imgs/small@2x.png 1.5x,
-            imgs/large.png 1000w,
-            imgs/large@2x.png 1000w 1.5x">
-    <noscript><img src="medium.png"></noscript>
+    <img srcset="http://placehold.it/300x150,
+            http://placehold.it/800x300 500w,
+            http://placehold.it/600x300 1.5x,
+            http://placehold.it/1200x400 1000w,
+            http://placehold.it/2400x800 1000w 1.5x">
+    <noscript><img src="http://placehold.it/800x300"></noscript>
 
     <script src="../yass.js"></script>
 </body>
