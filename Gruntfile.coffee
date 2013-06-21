@@ -24,6 +24,9 @@ module.exports = (grunt) ->
     uglify:
       options:
         banner: '<%= meta.banner %>'
+        report: 'gzip'
+        compress:
+          dead_code: true
       main:
         files:
           'yass.min.js': ['yass.js']
