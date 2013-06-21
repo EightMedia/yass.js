@@ -19,14 +19,24 @@
           <a id="forkme_banner" href="https://github.com/EightMedia/yass.js">View on GitHub</a>
 
           <h1 id="project_title">Yass.js</h1>
-          <h2 id="project_tagline">Yet Another SrcSet implementation. <a href="demo">View demo.</a></h2>
+          <h2 id="project_tagline">Yet Another SrcSet implementation.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/EightMedia/yass.js/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/EightMedia/yass.js/tarball/master">Download this project as a tar.gz file</a>
+            </section>
         </header>
     </div>
 
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-<h3>
+        <h1>
+<a name="yassjs" class="anchor" href="#yassjs"><span class="octicon octicon-link"></span></a>yass.js</h1>
+
+<p>Yet Another SrcSet implementation.</p>
+
+<hr><h3>
 <a name="how-to-use-it" class="anchor" href="#how-to-use-it"><span class="octicon octicon-link"></span></a>How to use it</h3>
 
 <p>Add yass.js just after the last img tag on your page. 
@@ -35,17 +45,32 @@ So 500w should be visible on a 500px or wider screen.</p>
 
 <p>The order of the queries is not important, these are sorted by Yass. To force the update of the (including new) images, just call <code>YASS()</code> in your code.</p>
 
+<h4>
+<a name="simple-img-tag-with-srcset" class="anchor" href="#simple-img-tag-with-srcset"><span class="octicon octicon-link"></span></a>Simple img tag with srcset</h4>
+
+<p>This may cause 2 requests for a image, when it matches one in the srcset.</p>
+
 <div class="highlight"><pre><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"small.png"</span> 
   <span class="na">srcset=</span><span class="s">"medium.png 500w, small@2x.png 2x, large.png 1000w, large@2x.png 1000w 2x"</span><span class="nt">&gt;</span>
 </pre></div>
 
-<p>You can also use it without the loading of the <code>src</code>, and provide a <code>noscript</code> fallback.</p>
+<h4>
+<a name="img-tag-with-noscript-fallback" class="anchor" href="#img-tag-with-noscript-fallback"><span class="octicon octicon-link"></span></a>Img tag with noscript fallback</h4>
 
-<div class="highlight"><pre><span class="nt">&lt;img</span> <span class="na">srcset=</span><span class="s">"small.png, medium.png 500w, small@2x.png 2x, large.png 1000w, large@2x.png 1000w 2x"</span><span class="nt">&gt;</span>
+<p>Now only the image that matches the device/viewport is loaded, and non-js users (also spiders) 
+will get the fallback between the <code>noscript</code> tags. With a library like <a href="http://modernizr.com">Modernizr</a> you can hide 
+the images for non-js users</p>
+
+<div class="highlight"><pre><span class="nt">&lt;style&gt;</span> 
+<span class="nc">.no-js</span> <span class="nt">img</span><span class="o">[</span><span class="nt">srcset</span><span class="o">]</span> <span class="p">{</span> <span class="k">display</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span> <span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">srcset=</span><span class="s">"small.png, medium.png 500w, small@2x.png 2x, large.png 1000w, large@2x.png 1000w 2x"</span><span class="nt">&gt;</span>
 <span class="nt">&lt;noscript&gt;&lt;img</span> <span class="na">src=</span><span class="s">"medium.png"</span><span class="nt">&gt;&lt;/noscript&gt;</span>
 </pre></div>
 
-<h3>
+<p>With a tool like modernizer</p>
+
+<hr><h3>
 <a name="css-trick" class="anchor" href="#css-trick"><span class="octicon octicon-link"></span></a>CSS trick</h3>
 
 <p>For slightly better user experience you can add some css to hide the images with a srcset onload.
@@ -54,7 +79,9 @@ Yass sets the image to <code>visibility: visible</code> when loaded. So with a s
 <div class="highlight"><pre><span class="nt">img</span><span class="o">[</span><span class="nt">srcset</span><span class="o">]</span> <span class="p">{</span> <span class="k">visibility</span><span class="o">:</span> <span class="k">hidden</span><span class="p">;</span> <span class="p">}</span>
 </pre></div>
 
-<h3>
+<p>Check the /demo directory for a sample implementation.</p>
+
+<hr><h3>
 <a name="notes" class="anchor" href="#notes"><span class="octicon octicon-link"></span></a>Notes</h3>
 
 <p>Yass.js is small, under 500bytes when minified and gzipped...</p>
