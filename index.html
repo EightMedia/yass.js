@@ -35,8 +35,8 @@ So 500w should be visible on a 500px or wider screen.</p>
 
 <p>The order of the queries is not important, these are sorted by Yass. To force the update of the (including new) images, just call <code>YASS()</code> in your code.</p>
 
-<h4>
-<a name="simple-img-tag-with-srcset" class="anchor" href="#simple-img-tag-with-srcset"><span class="octicon octicon-link"></span></a>Simple img tag with srcset</h4>
+<h5>
+<a name="simple-img-tag-with-srcset" class="anchor" href="#simple-img-tag-with-srcset"><span class="octicon octicon-link"></span></a>Simple img tag with srcset</h5>
 
 <p>This may cause 2 requests for a image, when it matches one in the srcset.</p>
 
@@ -44,8 +44,8 @@ So 500w should be visible on a 500px or wider screen.</p>
   <span class="na">srcset=</span><span class="s">"medium.png 500w, small@2x.png 2x, large.png 1000w, large@2x.png 1000w 2x"</span><span class="nt">&gt;</span>
 </pre></div>
 
-<h4>
-<a name="img-tag-with-noscript-fallback" class="anchor" href="#img-tag-with-noscript-fallback"><span class="octicon octicon-link"></span></a>Img tag with noscript fallback</h4>
+<h5>
+<a name="img-tag-with-noscript-fallback" class="anchor" href="#img-tag-with-noscript-fallback"><span class="octicon octicon-link"></span></a>Img tag with noscript fallback</h5>
 
 <p>Now only the image that matches the device/viewport is loaded, and non-js users (also spiders) 
 will get the fallback between the <code>noscript</code> tags. With a library like <a href="http://modernizr.com">Modernizr</a> you can hide 
