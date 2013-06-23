@@ -1,7 +1,8 @@
-/**
- * Yet Another SrcSet implementation.
- * https://github.com/EightMedia/yass.js
- */
+/*! Yass.js 
+ * http://eightmedia.github.io/yass.js/
+ *
+ * Copyright (c) 2013 Jorik Tangelder <j.tangelder@gmail.com>;
+ * Licensed under the MIT license */
 var YASS = (function(win, doc) {
     var yass_attr = 'data-yass',
         srcset_attr = 'srcset',
