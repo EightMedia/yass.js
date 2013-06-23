@@ -5,6 +5,8 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "components"
+    "components",
+    "Gruntfile.coffee",
+    "package.json"
   ]
 }
