@@ -53,14 +53,14 @@ So 500w should be visible on a 500px or wider screen.</p>
 will get the fallback between the <code>noscript</code> tags. With a library like <a href="http://modernizr.com">Modernizr</a> you can hide 
 the images for non-js users</p>
 
-<div class="highlight"><pre><span class="nt">&lt;style&gt;</span> 
-<span class="nc">.no-js</span> <span class="nt">img</span><span class="o">[</span><span class="nt">srcset</span><span class="o">]</span> <span class="p">{</span> <span class="k">display</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span> <span class="p">}</span>
-<span class="nt">&lt;/style&gt;</span>
+<div class="highlight">
 <span class="nt">&lt;img</span> <span class="na">srcset=</span><span class="s">"small.png, medium.png 500w, small@2x.png 2x, large.png 1000w, large@2x.png 1000w 2x"</span><span class="nt">&gt;</span>
 <span class="nt">&lt;noscript&gt;&lt;img</span> <span class="na">src=</span><span class="s">"medium.png"</span><span class="nt">&gt;&lt;/noscript&gt;</span>
 </pre></div>
 
-<p>With a tool like modernizer</p>
+<div class="highlight"><pre>
+<span class="nc">.no-js</span> <span class="nt">img</span><span class="o">[</span><span class="nt">srcset</span><span class="o">]</span> <span class="p">{</span> <span class="k">display</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
 
 <hr><h3>
 <a name="css-trick" class="anchor" href="#css-trick"><span class="octicon octicon-link"></span></a>CSS trick</h3>
