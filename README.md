@@ -39,10 +39,11 @@ the images for non-js users.
 ### CSS trick
 
 For slightly better user experience you can add some css to hide the images with a srcset onload.
-Yass sets the image to `visibility: visible` when loaded. So with a simple line of css you can hide the srcset images:
+Yass gives the img the class `yass-ready` when loaded. So with a simple line of css you can hide the srcset images:
 
 ````css
 img[srcset] { visibility: hidden; }
+img.yass-ready { visibility: visible; }
 ````
 
 Check the /demo directory for a sample implementation.

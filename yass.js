@@ -1,10 +1,6 @@
-/*! Yass.js 
- * http://eightmedia.github.io/yass.js/
- *
- * Copyright (c) 2013 Jorik Tangelder <j.tangelder@gmail.com>;
- * Licensed under the MIT license */
 var YASS = (function(win, doc) {
     var yass_attr = 'data-yass',
+        visible_class = 'yass-ready',
         srcset_attr = 'srcset',
 
         // shortcuts
@@ -129,7 +125,9 @@ var YASS = (function(win, doc) {
          * show the image
          */
         show : function() {
-            this.image.style.visibility = 'visible';
+            if(this.image.className.indexOf(visible_class) === -1) {
+              this.image.className += ' '+ visible_class;
+            }
         },
 
 
@@ -178,7 +176,7 @@ var YASS = (function(win, doc) {
         // create instances
         var imgs = doc.images;
         for(var i= 0,len=imgs.length; i<len; i++) {
-            if(!imgs[i].getAttribute(yass_attr)) {
+            if(imgs[i].getAttribute(srcset_attr)) {
                 instances.push(new ImageSrcSet(imgs[i]));
             }
         }
