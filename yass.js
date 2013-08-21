@@ -137,7 +137,10 @@ var YASS = (function(win, doc) {
         update : function() {
             // only if the image still exists
             if(this.image.parentNode && this.has_srcset) {
-                this.image.src = this.getSrc();
+                var new_src = this.getSrc();
+                if(this.image.src != new_src) {
+                  this.image.src = new_src;
+                }
                 this.show();
             }
         }
