@@ -35,8 +35,12 @@ var YASS = (function(win, doc) {
         // initial we hide the image with css.
         // when the image is loaded we will show it, also after a timeout,
         // because sometimes the image is already loaded (like from cache)
-        addEvent(image, "load", function() { self.show(); });
-        setTimeout(function(){ self.show(); }, 500);
+        addEvent(image, "load", function() { 
+          self.show();           
+        });
+        setTimeout(function(){ 
+          self.show();           
+        }, 500);
     }
 
 
@@ -127,6 +131,11 @@ var YASS = (function(win, doc) {
         show : function() {
             if(this.image.className.indexOf(visible_class) === -1) {
               this.image.className += ' '+ visible_class;
+            }
+          
+            if(this.image.naturalWidth) {
+              this.image.width = this.image.naturalWidth;
+              this.image.height = this.image.naturalHeight;
             }
         },
 

@@ -2,7 +2,7 @@
     "name": "yass",
     "title": "Yass.js",
     "description": "Yet Another SrcSet implementation",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "homepage": "http://eightmedia.github.io/yass.js/",
     "licenses": [{
         "type": "MIT",
