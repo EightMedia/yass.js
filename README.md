@@ -34,6 +34,13 @@ the images for non-js users.
 .no-js img[srcset] { display: none; }
 ````
 
+#### Srcset iframes
+You can also register iframes with YASS, just pass the iframe object to Yass, like this: `YASS(iframe_el)`. Now the iframe also support srcset.
+
+
+#### Other srcset attribute
+If you want to support an other attribute for your srcset query, you can set `window.YASS_ATTRIBUTE` to the preferred attribute. You should do this before including the Yass code.
+
 ----
 
 ### CSS trick
