@@ -189,7 +189,7 @@ var YASS = (function(win, doc) {
     var imgs = doc.images;
     for(var i = 0, len = imgs.length; i < len; i++) {
       if(imgs[i].getAttribute(srcset_attr)) {
-        instances.push(new ImageSrcSet(imgs[i]));
+        instances.push(new SrcSet(imgs[i]));
       }
     }
   }
