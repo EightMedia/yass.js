@@ -6,7 +6,7 @@ Yet Another SrcSet implementation. Simple and lightweight.
 ### How to use it
 
 Add yass.js just after the last img tag on your page. 
-Yass works from a mobile-first perspective, so the properties are seen as a minimal value.
+Yass works from a mobile-first perspective, so the properties are seen as a minimal value. ([So isnt valid with the W3 proposed syntax](http://www.w3.org/html/wg/drafts/srcset/w3c-srcset/#adaptive-images))
 So 500w should be visible on a 500px or wider screen.
 
 The order of the queries is not important, these are sorted by Yass. To force the update of the (including new) images, just call `YASS()` in your code.
