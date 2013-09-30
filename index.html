@@ -1,108 +1,11 @@
-<!DOCTYPE html>
 <html>
-
-  <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Yass.js : Yet Another SrcSet implementation." />
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Yass.js</title>
-  </head>
-
+<head>
+  <style>
+    body { background: #eee; margin: 50px; text-align: center; font: 30px Helvetica, Arial, sans-serif; color: #777; }
+  </style>
+</head>
   <body>
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/EightMedia/yass.js">View on GitHub</a>
-
-          <h1 id="project_title">Yass.js &nbsp; &nbsp; <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://eightmedia.github.io/yass.js/" data-text="Yass, standalone srcset implementation, under 500 bytes">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-</h1>
-          <h2 id="project_tagline">Small standalone srcset implementation.</h2>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-<h3>
-<a name="how-to-use-it" class="anchor" href="#how-to-use-it"><span class="octicon octicon-link"></span></a>How to use it</h3>
-
-<p>Add yass.js just after the last img tag on your page. 
-Yass works from a mobile-first perspective, so the properties are seen as a minimal value.
-So 500w should be visible on a 500px or wider screen.</p>
-
-<p>The order of the queries is not important, these are sorted by Yass. To force the update of the (including new) images, just call <code>YASS()</code> in your code.</p>
-
-<h5>
-<a name="simple-img-tag-with-srcset" class="anchor" href="#simple-img-tag-with-srcset"><span class="octicon octicon-link"></span></a>Simple img tag with srcset</h5>
-
-<p>This may cause 2 requests for a image, when it matches one in the srcset.</p>
-
-<div class="highlight"><pre><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"small.png"</span> 
-  <span class="na">srcset=</span><span class="s">"medium.png 500w, small@2x.png 2x, large.png 1000w, large@2x.png 1000w 2x"</span><span class="nt">&gt;</span>
-</pre></div>
-
-<h5>
-<a name="img-tag-with-noscript-fallback" class="anchor" href="#img-tag-with-noscript-fallback"><span class="octicon octicon-link"></span></a>Img tag with noscript fallback</h5>
-
-<p>Now only the image that matches the device/viewport is loaded, and non-js users (also spiders) 
-will get the fallback between the <code>noscript</code> tags. With a library like <a href="http://modernizr.com">Modernizr</a> you can hide 
-the images for non-js users</p>
-
-<div class="highlight"><pre>
-<span class="nt">&lt;img</span> <span class="na">srcset=</span><span class="s">"small.png, medium.png 500w, small@2x.png 2x, large.png 1000w, large@2x.png 1000w 2x"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;noscript&gt;&lt;img</span> <span class="na">src=</span><span class="s">"medium.png"</span><span class="nt">&gt;&lt;/noscript&gt;</span>
-</pre></div>
-<br>
-<div class="highlight"><pre>
-<span class="nc">.no-js</span> <span class="nt">img</span><span class="o">[</span><span class="nt">srcset</span><span class="o">]</span> <span class="p">{</span> <span class="k">display</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span> <span class="p">}</span>
-</pre></div>
-
-<hr><h3>
-<a name="css-trick" class="anchor" href="#css-trick"><span class="octicon octicon-link"></span></a>CSS trick</h3>
-
-<p>For slightly better user experience you can add some css to hide the images with a srcset onload.
-Yass sets the image to <code>visibility: visible</code> when loaded. So with a simple line of css you can hide the srcset images:</p>
-
-<div class="highlight"><pre><span class="nt">img</span><span class="o">[</span><span class="nt">srcset</span><span class="o">]</span> <span class="p">{</span> <span class="k">visibility</span><span class="o">:</span> <span class="k">hidden</span><span class="p">;</span> <span class="p">}</span>
-</pre></div>
-
-<hr>
-
-<p>Check the /demo directory for a sample implementation.</p>
-
-<hr><h3>
-<a name="notes" class="anchor" href="#notes"><span class="octicon octicon-link"></span></a>Notes</h3>
-
-<p>Yass.js is small, under 500bytes when minified and gzipped...</p>
-
-<p>Tested in Chrome 28, Android 4.2, IOS6, BlackBerry10 and IE6. Should work on most/all browsers.</p>
-
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Yass.js maintained by <a href="https://github.com/EightMedia">EightMedia</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-30289566-3', 'eightmedia.github.io');
-  ga('send', 'pageview');
-
-</script>
-
+    <script> setTimeout(function() { window.location = 'https://github.com/EightMedia/yass.js'; }, 3000); </script>
+Redirecting to the repository...
   </body>
 </html>
