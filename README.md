@@ -1,7 +1,7 @@
 yass.js
 =========
 
-Yet Another SrcSet implementation.
+Yet Another SrcSet implementation. Simple and lightweight.
 
 ### How to use it
 
