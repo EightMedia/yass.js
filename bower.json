@@ -1,6 +1,6 @@
 {
   "name": "yass.js",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "main": "yass.min.js",
   "ignore": [
     "**/.*",
