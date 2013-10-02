@@ -27,14 +27,14 @@
 </head>
 <body>
 
-    IMG tag with srcset attribute, may cause 2 requests:<br>
-    <img src="http://placehold.it/300x150"
-        srcset="http://placehold.it/800x300 500w,
-            http://placehold.it/600x300 1.5x,
-            http://placehold.it/1200x400 1000w,
-            http://placehold.it/2400x800 1000w 1.5x"
+    Mobilefirst is set to false:<br>
+    <img srcset="http://placehold.it/800x300 800w,
+            http://placehold.it/600x300 600w 1.5x,
+            http://placehold.it/1200x400 12000w,
+            http://placehold.it/2400x800"
         alt="Example">
 
+    <script> window.YASS_MOBILEFIRST = false; </script>
     <script src="../yass.js"></script>
 </body>
 </html>

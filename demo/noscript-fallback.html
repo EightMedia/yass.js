@@ -22,6 +22,7 @@
 
         /* hides image error icon. Yass.js sets the image to visible onload. */
         .js img[srcset] { visibility: hidden; }
+        .js img[srcset].yass-ready { visibility: visible; }
 
         /* hide images with srcset when no JS, the img between the noscript will be shown instead */
         .no-js img[srcset] { display: none; }
