@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>YASS.js</title>
+
+    <script src="modernizr.js"></script>
+    <style>
+
+        body {
+            text-align: center;
+            font: 1.2em/1.8em Arial;
+        }
+
+    </style>
+</head>
+<body>
+
+    responsive video source:<br>
+    <video width="640" height="480" controls>
+      <source srcset="small.m4v, large.mov 900w">
+    </video>
+
+    <script src="../yass.js"></script>
+    <script>
+
+      var video = document.getElementsByTagName('video')[0];
+      var videosource = video.getElementsByTagName('source')[0];
+
+      YASS(videosource, {}, function(new_src) {
+        video.load();
+        video.play();
+      });
+
+    </script>
+
+    <p><small>tested in chrome on osx</small></p>
+</body>
+</html>

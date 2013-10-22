@@ -1,33 +1,47 @@
 var YASS = (function(win, doc) {
-  var yass_attr = 'data-yass',
-    visible_class = 'yass-ready',
-    srcset_attr = win.YASS_ATTRIBUTE || 'srcset',
 
-  // shortcuts
-    docEl = doc.documentElement,
+  var docEl = doc.documentElement,
     screen = win.screen,
 
-  // collect all instances
+    // collect all instances
     instances = [],
 
-  // media query input data
-    media = {};
+    // media query input data
+    media = {},
+
+    // default options
+    options = merge({
+        ready_class: 'yass-ready',
+        yass_attr: 'data-yass',
+        src_attr: 'src',
+        srcset_attr: 'srcset',
+        resize_timeout: 50
+      }, win.YASS_OPTIONS || {});
 
 
   /**
    * SrcSet object per obj in the document
    * @param obj
+   * @param [inst_options]
+   * @param [callback]
    * @constructor
    */
-  function SrcSet(obj) {
+  function SrcSet(obj, inst_options, callback) {
     var self = this;
 
+    if(inst_options) {
+      this.options = merge(options, inst_options);
+    } else {
+      this.options = options;
+    }
+
+    this.callback = callback || function(){};
     this.obj = obj;
 
     this.candidates = null;
-    this.has_srcset = obj.getAttribute(srcset_attr);
+    this.has_srcset = obj.getAttribute(this.options.srcset_attr);
 
-    obj.setAttribute(yass_attr, true);
+    obj.setAttribute(this.options.yass_attr, true);
 
     this.collectCandidates();
     this.update();
@@ -58,7 +72,7 @@ var YASS = (function(win, doc) {
       this.candidates = [];
 
       // read the srcset attribute
-      var attr = this.obj.getAttribute(srcset_attr),
+      var attr = this.obj.getAttribute(this.options.srcset_attr),
         parts = attr.split(/\s*,\s*/g);
 
       // walk the srcsets and collect the properties
@@ -81,7 +95,7 @@ var YASS = (function(win, doc) {
       // also append the initial obj to the set
       if(this.obj.src) {
         this.candidates.push({
-          src: this.obj.src,
+          src: this.obj[this.options.src_attr],
           w: 0,
           h: 0,
           x: 1
@@ -129,8 +143,8 @@ var YASS = (function(win, doc) {
      * show the obj
      */
     show: function() {
-      if(this.obj.className.indexOf(visible_class) === -1) {
-        this.obj.className += ' ' + visible_class;
+      if(this.obj.className.indexOf(this.options.ready_class) === -1) {
+        this.obj.className += ' ' + this.options.ready_class;
       }
 
       if(this.obj.naturalWidth) {
@@ -147,8 +161,9 @@ var YASS = (function(win, doc) {
       // only if the obj still exists
       if(this.obj.parentNode && this.has_srcset) {
         var new_src = this.getSrc();
-        if(this.obj.src != new_src) {
-          this.obj.src = new_src;
+        if(this.obj.getAttribute(this.options.src_attr) != new_src) {
+          this.obj.setAttribute(this.options.src_attr, new_src);
+          this.callback.call(this, new_src);
         }
         this.show();
       }
@@ -171,13 +186,17 @@ var YASS = (function(win, doc) {
 
 
   /**
-   * update all images to match their srcset
+   * simple merge objects into a new one
+   * @param   {object}  obj1
+   * @param   {object}  obj2
+   * @returns {object}  merged
    */
-  function update() {
-    getMediaProperties();
-    for(var i = 0, len = instances.length; i < len; i++) {
-      instances[i].update();
+  function merge(obj1, obj2) {
+    var merged = {};
+    for(var key in obj1) {
+      merged[key] = obj2[key] || obj1[key];
     }
+    return merged;
   }
 
 
@@ -188,7 +207,7 @@ var YASS = (function(win, doc) {
     // create instances
     var imgs = doc.images;
     for(var i = 0, len = imgs.length; i < len; i++) {
-      if(imgs[i].getAttribute(srcset_attr)) {
+      if(imgs[i].getAttribute(options.srcset_attr) && !imgs[i].getAttribute(options.yass_attr)) {
         instances.push(new SrcSet(imgs[i]));
       }
     }
@@ -207,6 +226,25 @@ var YASS = (function(win, doc) {
   }
 
 
+  /**
+   * update all images to match their srcset
+   */
+  function update() {
+    getMediaProperties();
+    for(var i = 0, len = instances.length; i < len; i++) {
+      instances[i].update();
+    }
+  }
+
+
+  /**
+   * try to trigger update in an animation frame
+   */
+  function triggerUpdate() {
+    (win.requestAnimationFrame) ? win.requestAnimationFrame(update) : update();
+  }
+
+
   // initial magic
   getMediaProperties();
   registerImages();
@@ -216,12 +254,12 @@ var YASS = (function(win, doc) {
   var resize_timer;
   addEvent(win, "resize", function() {
     clearTimeout(resize_timer);
-    resize_timer = setTimeout(update, 100);
+    resize_timer = setTimeout(triggerUpdate, options.resize_timeout);
   });
 
 
   // on orientation change
-  addEvent(win, "orientationchange", update);
+  addEvent(win, "orientationchange", triggerUpdate);
 
 
   /**
@@ -229,14 +267,18 @@ var YASS = (function(win, doc) {
    * by default it returns an update and register method
    *
    * @param [obj=null]
+   * @param [options=null]
+   * @param [callback=null]
    */
-  return function(obj) {
+  return function(obj, options, callback) {
     if(obj) {
-      var inst = new SrcSet(obj);
+      var inst = new SrcSet(obj, options, callback);
       instances.push(inst);
       return inst;
     }
+
     registerImages();
-    return update();
+    triggerUpdate();
+    return instances;
   };
 })(window, document);
