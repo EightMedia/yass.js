@@ -1,4 +1,4 @@
-var YASS = (function(win, doc) {
+(function YASS(win, doc) {
 
   var docEl = doc.documentElement,
     screen = win.screen,
