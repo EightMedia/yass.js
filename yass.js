@@ -282,3 +282,7 @@ var YASS = (function(win, doc) {
     return instances;
   };
 })(window, document);
+
+if(typeof module != 'undefined' && module.exports) {
+  module.exports = YASS;
+}
