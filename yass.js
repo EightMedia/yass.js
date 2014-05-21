@@ -14,7 +14,7 @@ var YASS = (function(win, doc) {
         ready_class: 'yass-ready',
         yass_attr: 'data-yass',
         src_attr: 'src',
-        srcset_attr: 'srcset',
+        srcset_attr: 'data-srcset',
         resize_timeout: 50
       }, win.YASS_OPTIONS || {});
 

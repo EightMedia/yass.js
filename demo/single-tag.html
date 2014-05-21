@@ -21,8 +21,8 @@
             border: solid 1px #000;
         }
 
-        .js img[srcset] { visibility: hidden; }
-        .js img[srcset].yass-ready { visibility: visible; }
+        .js img[data-srcset] { visibility: hidden; }
+        .js img[data-srcset].yass-ready { visibility: visible; }
 
     </style>
 </head>
@@ -30,7 +30,7 @@
 
     IMG tag with srcset attribute, may cause 2 requests:<br>
     <img src="http://placehold.it/300x150"
-        srcset="http://placehold.it/800x300 500w,
+        data-srcset="http://placehold.it/800x300 500w,
             http://placehold.it/600x300 1.5x,
             http://placehold.it/1200x400 1000w,
             http://placehold.it/2400x800 1000w 1.5x"

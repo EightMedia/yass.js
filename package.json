@@ -2,7 +2,7 @@
     "name": "yass",
     "title": "Yass.js",
     "description": "Yet Another SrcSet implementation",
-    "version": "0.1.2",
+    "version": "0.2.0",
     "homepage": "http://eightmedia.github.io/yass.js/",
     "licenses": [{
         "type": "MIT",
@@ -23,8 +23,8 @@
     "dependencies": {},
     "devDependencies": {
         "grunt": "0.4.x",
-        "grunt-contrib-watch": "0.2.x",
-        "grunt-contrib-uglify": "0.2.x"
+        "grunt-contrib-watch": "0.6.x",
+        "grunt-contrib-uglify": "0.4.x"
     },
     "main": "yass.js"
 }
