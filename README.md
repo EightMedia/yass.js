@@ -16,7 +16,7 @@ The order of the queries is not important, these are sorted by Yass. To force th
 This may cause 2 requests for a image, when it matches one in the srcset.
 ````html
 <img src="small.png"
-  srcset="medium.png 500w, small@2x.png 2x, large.png 1000w, large@2x.png 1000w 2x">
+  data-srcset="medium.png 500w, small@2x.png 2x, large.png 1000w, large@2x.png 1000w 2x">
 ````
 
 #### Img tag with noscript fallback
@@ -25,11 +25,11 @@ will get the fallback between the `noscript` tags. With a library like [Moderniz
 the images for non-js users.
 
 ````html
-<img srcset="small.png, medium.png 500w, small@2x.png 2x, large.png 1000w, large@2x.png 1000w 2x">
+<img data-srcset="small.png, medium.png 500w, small@2x.png 2x, large.png 1000w, large@2x.png 1000w 2x">
 <noscript><img src="medium.png"></noscript>
 ````
 ````css
-.no-js img[srcset] { display: none; }
+.no-js img[data-srcset] { display: none; }
 ````
 
 
@@ -62,7 +62,7 @@ For slightly better user experience you can add some css to hide the images with
 Yass gives the img the class `yass-ready` when loaded. So with a simple line of css you can hide the srcset images:
 
 ````css
-img[srcset] { visibility: hidden; }
+img[data-srcset] { visibility: hidden; }
 img.yass-ready { visibility: visible; }
 ````
 
