@@ -72,7 +72,7 @@ var YASS = (function(win, doc) {
       this.candidates = [];
 
       // read the srcset attribute
-      var attr = this.obj.getAttribute(this.options.srcset_attr),
+      var attr = this.obj.getAttribute(this.options.srcset_attr).trim(),
         parts = attr.split(/\s*,\s*/g);
 
       // walk the srcsets and collect the properties
